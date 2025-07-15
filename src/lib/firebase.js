@@ -1,8 +1,9 @@
 // Firebase configuration and initialization
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { getAuth } from "firebase/auth/index.js";
+import { getFirestore } from "firebase/firestore/index.js";
+import { getStorage } from "firebase/storage/index.js";
+
 
 
 // Firebase configuration object
