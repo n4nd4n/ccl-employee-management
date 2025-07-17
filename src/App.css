@@ -8,6 +8,7 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 }
 
 #root {
@@ -17,7 +18,7 @@ html, body {
   padding: 0;
   text-align: left;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
 }
 
 /* Base Typography - Mobile First */
@@ -92,6 +93,53 @@ h3 {
   
   h3 {
     font-size: 2rem;
+  }
+}
+
+/* Dashboard Layout Fixes */
+.dashboard-container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.dashboard-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-content {
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .dashboard-content {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .dashboard-content {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dashboard-content {
+    padding: 2rem 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .dashboard-content {
+    padding: 2rem 6rem;
   }
 }
 
@@ -735,3 +783,48 @@ select:focus-visible {
     max-width: 85%;
   }
 }
+
+/* Fix for viewport height issues */
+.vh-fix {
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
+}
+
+/* Ensure proper scrolling */
+.scroll-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+/* Header positioning fix */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Prevent content from being hidden behind header */
+.content-with-header {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* Ensure proper layout for dashboard pages */
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.dashboard-main {
+  flex: 1;
+  width: 100%;
+  overflow-x: hidden;
+}
+
