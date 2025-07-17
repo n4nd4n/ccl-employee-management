@@ -3,9 +3,17 @@
   box-sizing: border-box;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
 #root {
+  width: 100%;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   text-align: left;
   min-height: 100vh;
@@ -16,6 +24,11 @@
 body {
   font-size: 14px;
   line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
@@ -64,6 +77,21 @@ h3 {
   
   h3 {
     font-size: 1.75rem;
+  }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1440px) {
+  h1 {
+    font-size: 3rem;
+  }
+  
+  h2 {
+    font-size: 2.25rem;
+  }
+  
+  h3 {
+    font-size: 2rem;
   }
 }
 
@@ -166,6 +194,8 @@ h3 {
   transition: all 0.3s ease;
   animation: fadeInUp 0.6s ease-out;
   margin: 1rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -173,7 +203,23 @@ h3 {
     padding: 2em;
     border-radius: 16px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    margin: 1.5rem;
+    margin: 1.5rem auto;
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card {
+    padding: 2.5em;
+    margin: 2rem auto;
+    max-width: 80%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .card {
+    padding: 3em;
+    max-width: 70%;
   }
 }
 
@@ -190,6 +236,7 @@ fieldset {
   margin: 1rem 0;
   background: rgba(249, 250, 251, 0.5);
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 fieldset:hover {
@@ -242,6 +289,7 @@ fieldset legend {
   transition: all 0.3s ease;
   cursor: pointer;
   font-size: 0.875rem;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -249,6 +297,8 @@ fieldset legend {
     border-radius: 12px;
     padding: 12px 24px;
     font-size: 1rem;
+    width: auto;
+    min-width: 200px;
   }
 }
 
@@ -276,6 +326,7 @@ fieldset legend {
 .form-group {
   margin-bottom: 1rem;
   animation: slideInRight 0.6s ease-out;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -319,27 +370,68 @@ fieldset legend {
 
 @media (min-width: 640px) {
   .container {
-    max-width: 640px;
+    max-width: 100%;
     padding: 1.5rem;
   }
 }
 
 @media (min-width: 768px) {
   .container {
-    max-width: 768px;
+    max-width: 100%;
     padding: 2rem;
   }
 }
 
 @media (min-width: 1024px) {
   .container {
-    max-width: 1024px;
+    max-width: 100%;
+    padding: 2rem 4rem;
   }
 }
 
 @media (min-width: 1280px) {
   .container {
-    max-width: 1280px;
+    max-width: 100%;
+    padding: 2rem 6rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 100%;
+    padding: 2rem 8rem;
+  }
+}
+
+/* Full Width Layout Classes */
+.full-width {
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+.full-width-content {
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .full-width-content {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .full-width-content {
+    padding: 2rem 4rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .full-width-content {
+    padding: 2rem 6rem;
   }
 }
 
@@ -347,6 +439,7 @@ fieldset legend {
 .grid {
   display: grid;
   gap: 1rem;
+  width: 100%;
 }
 
 .grid-cols-1 {
@@ -374,6 +467,10 @@ fieldset legend {
   
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -520,6 +617,15 @@ select:focus-visible {
   .md\:text-4xl { font-size: 2.25rem; }
 }
 
+@media (min-width: 1024px) {
+  .lg\:text-lg { font-size: 1.125rem; }
+  .lg\:text-xl { font-size: 1.25rem; }
+  .lg\:text-2xl { font-size: 1.5rem; }
+  .lg\:text-3xl { font-size: 1.875rem; }
+  .lg\:text-4xl { font-size: 2.25rem; }
+  .lg\:text-5xl { font-size: 3rem; }
+}
+
 /* Spacing Utilities */
 .space-y-2 > * + * { margin-top: 0.5rem; }
 .space-y-3 > * + * { margin-top: 0.75rem; }
@@ -547,16 +653,57 @@ select:focus-visible {
 .h-full { height: 100%; }
 .min-h-screen { min-height: 100vh; }
 
+/* Max Width Responsive Utilities */
+.max-w-sm { max-width: 24rem; }
+.max-w-md { max-width: 28rem; }
+.max-w-lg { max-width: 32rem; }
+.max-w-xl { max-width: 36rem; }
+.max-w-2xl { max-width: 42rem; }
+.max-w-3xl { max-width: 48rem; }
+.max-w-4xl { max-width: 56rem; }
+.max-w-5xl { max-width: 64rem; }
+.max-w-6xl { max-width: 72rem; }
+.max-w-7xl { max-width: 80rem; }
+
+@media (min-width: 768px) {
+  .md\:max-w-2xl { max-width: 42rem; }
+  .md\:max-w-3xl { max-width: 48rem; }
+  .md\:max-w-4xl { max-width: 56rem; }
+  .md\:max-w-5xl { max-width: 64rem; }
+  .md\:max-w-6xl { max-width: 72rem; }
+  .md\:max-w-7xl { max-width: 80rem; }
+  .md\:max-w-full { max-width: 100%; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:max-w-4xl { max-width: 56rem; }
+  .lg\:max-w-5xl { max-width: 64rem; }
+  .lg\:max-w-6xl { max-width: 72rem; }
+  .lg\:max-w-7xl { max-width: 80rem; }
+  .lg\:max-w-full { max-width: 100%; }
+}
+
 /* Margin and Padding Utilities */
 .p-2 { padding: 0.5rem; }
 .p-3 { padding: 0.75rem; }
 .p-4 { padding: 1rem; }
 .p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
 
 .m-2 { margin: 0.5rem; }
 .m-3 { margin: 0.75rem; }
 .m-4 { margin: 1rem; }
 .m-6 { margin: 1.5rem; }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
 
 .mt-2 { margin-top: 0.5rem; }
 .mt-4 { margin-top: 1rem; }
@@ -564,3 +711,27 @@ select:focus-visible {
 .mb-4 { margin-bottom: 1rem; }
 .mb-6 { margin-bottom: 1.5rem; }
 
+/* Desktop-specific overrides for full width utilization */
+@media (min-width: 1024px) {
+  .desktop-full-width {
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+    padding: 2rem 4rem;
+  }
+  
+  .desktop-wide-content {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1440px) {
+  .desktop-full-width {
+    padding: 2rem 6rem;
+  }
+  
+  .desktop-wide-content {
+    max-width: 85%;
+  }
+}
