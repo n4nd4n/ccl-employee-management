@@ -8,21 +8,44 @@ export function Select({ value, onValueChange, children }) {
     setOpen(false);
   }
 
+  // Find the selected option's display text
+  const selectedOption = React.Children.toArray(children).find(child => {
+    if (child.type === SelectContent) {
+      return React.Children.toArray(child.props.children).find(item => 
+        item.props.value === value
+      );
+    }
+    return false;
+  });
+
+  const selectedText = selectedOption ? 
+    React.Children.toArray(selectedOption.props.children).find(item => 
+      item.props.value === value
+    )?.props.children : value;
+
   return (
     <div className="relative w-full">
       <div
         onClick={() => setOpen(!open)}
-        className="cursor-pointer px-3 py-2 border rounded bg-white"
+        className="cursor-pointer px-3 py-2 border rounded bg-white flex justify-between items-center"
       >
-        {value || "Select"}
+        <span>{selectedText || "Select"}</span>
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
       </div>
       {open && (
-        <div className="absolute top-full left-0 w-full border bg-white mt-1 rounded shadow">
-          {React.Children.map(children, child =>
-            React.cloneElement(child, {
-              onClick: () => handleSelect(child.props.value)
-            })
-          )}
+        <div className="absolute top-full left-0 w-full border bg-white mt-1 rounded shadow z-10">
+          {React.Children.map(children, child => {
+            if (child.type === SelectContent) {
+              return React.Children.map(child.props.children, item =>
+                React.cloneElement(item, {
+                  onClick: () => handleSelect(item.props.value)
+                })
+              );
+            }
+            return child;
+          })}
         </div>
       )}
     </div>
