@@ -83,26 +83,26 @@ export default function Signup() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-10 animate-pulse" style={{animationDelay: '2s'}}></div>
       </div>
 
-      <div className="w-full max-w-md relative z-10">
+      <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl relative z-10">
         <div className="text-center mb-8 animate-fadeInUp">
           <div className="flex items-center justify-center mb-4 transform hover:scale-110 transition-transform duration-300">
-            <Building2 className="h-8 w-8 md:h-12 md:w-12 text-blue-600 mr-2 animate-bounce" style={{animationDelay: '0.5s'}} />
-            <Shield className="h-8 w-8 md:h-12 md:w-12 text-green-600 animate-bounce" style={{animationDelay: '1s'}} />
+            <Building2 className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 text-blue-600 mr-2 animate-bounce" style={{animationDelay: '0.5s'}} />
+            <Shield className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 text-green-600 animate-bounce" style={{animationDelay: '1s'}} />
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent mb-2">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent mb-2">
             CCL Mining
           </h1>
-          <p className="text-gray-600 mt-2 text-base md:text-lg">Employee Record & Compliance Management</p>
+          <p className="text-gray-600 mt-2 text-sm md:text-base lg:text-lg">Employee Record & Compliance Management</p>
         </div>
 
         <Card className="backdrop-blur-lg bg-white/90 shadow-2xl border-0 rounded-2xl transform hover:scale-105 transition-all duration-300 animate-slideInUp">
           <CardHeader className="text-center pb-4">
-            <CardTitle className="text-xl md:text-2xl font-bold text-gray-800">Create Account</CardTitle>
-            <CardDescription className="text-gray-600 text-sm md:text-base">
+            <CardTitle className="text-lg md:text-xl lg:text-2xl font-bold text-gray-800">Create Account</CardTitle>
+            <CardDescription className="text-gray-600 text-xs md:text-sm lg:text-base">
               Sign up to access the compliance management system
             </CardDescription>
           </CardHeader>
-          <CardContent className="px-4 md:px-6">
+          <CardContent className="px-4 md:px-6 lg:px-8">
             {error && (
               <Alert className="mb-4 border-red-200 bg-red-50/80 backdrop-blur-sm animate-shake">
                 <AlertDescription className="text-red-800 font-medium">
@@ -112,43 +112,45 @@ export default function Signup() {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-5">
-              <fieldset className="border border-gray-200 rounded-xl p-4 space-y-4">
-                <legend className="text-sm font-semibold text-gray-700 px-2">Personal Information</legend>
+              <fieldset className="border border-gray-200 rounded-xl p-4 md:p-5 lg:p-6 space-y-4">
+                <legend className="text-xs md:text-sm lg:text-base font-semibold text-gray-700 px-2">Personal Information</legend>
                 
-                <div className="space-y-2 transform hover:scale-105 transition-transform duration-200">
-                  <Label htmlFor="name" className="text-gray-700 font-medium">Full Name</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    placeholder="Enter your full name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-xl transition-all duration-300 bg-white/80 backdrop-blur-sm"
-                  />
-                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div className="space-y-2 transform hover:scale-105 transition-transform duration-200">
+                    <Label htmlFor="name" className="text-gray-700 font-medium text-sm md:text-base">Full Name</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      type="text"
+                      placeholder="Enter your full name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-xl transition-all duration-300 bg-white/80 backdrop-blur-sm"
+                    />
+                  </div>
 
-                <div className="space-y-2 transform hover:scale-105 transition-transform duration-200">
-                  <Label htmlFor="email" className="text-gray-700 font-medium">Email</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-xl transition-all duration-300 bg-white/80 backdrop-blur-sm"
-                  />
+                  <div className="space-y-2 transform hover:scale-105 transition-transform duration-200">
+                    <Label htmlFor="email" className="text-gray-700 font-medium text-sm md:text-base">Email</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="Enter your email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-xl transition-all duration-300 bg-white/80 backdrop-blur-sm"
+                    />
+                  </div>
                 </div>
               </fieldset>
 
-              <fieldset className="border border-gray-200 rounded-xl p-4 space-y-4">
-                <legend className="text-sm font-semibold text-gray-700 px-2">Account Details</legend>
+              <fieldset className="border border-gray-200 rounded-xl p-4 md:p-5 lg:p-6 space-y-4">
+                <legend className="text-xs md:text-sm lg:text-base font-semibold text-gray-700 px-2">Account Details</legend>
                 
                 <div className="space-y-2 transform hover:scale-105 transition-transform duration-200">
-                  <Label htmlFor="role" className="text-gray-700 font-medium flex items-center gap-2">
+                  <Label htmlFor="role" className="text-gray-700 font-medium text-sm md:text-base flex items-center gap-2">
                     <User className="h-4 w-4 text-blue-500" />
                     Role
                   </Label>
@@ -173,38 +175,40 @@ export default function Signup() {
                   </Select>
                 </div>
 
-                <div className="space-y-2 transform hover:scale-105 transition-transform duration-200">
-                  <Label htmlFor="password" className="text-gray-700 font-medium">Password</Label>
-                  <Input
-                    id="password"
-                    name="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                    className="border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-xl transition-all duration-300 bg-white/80 backdrop-blur-sm"
-                  />
-                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div className="space-y-2 transform hover:scale-105 transition-transform duration-200">
+                    <Label htmlFor="password" className="text-gray-700 font-medium text-sm md:text-base">Password</Label>
+                    <Input
+                      id="password"
+                      name="password"
+                      type="password"
+                      placeholder="Enter your password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+                      className="border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-xl transition-all duration-300 bg-white/80 backdrop-blur-sm"
+                    />
+                  </div>
 
-                <div className="space-y-2 transform hover:scale-105 transition-transform duration-200">
-                  <Label htmlFor="confirmPassword" className="text-gray-700 font-medium">Confirm Password</Label>
-                  <Input
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    type="password"
-                    placeholder="Confirm your password"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    required
-                    className="border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-100 rounded-xl transition-all duration-300 bg-white/80 backdrop-blur-sm"
-                  />
+                  <div className="space-y-2 transform hover:scale-105 transition-transform duration-200">
+                    <Label htmlFor="confirmPassword" className="text-gray-700 font-medium text-sm md:text-base">Confirm Password</Label>
+                    <Input
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      type="password"
+                      placeholder="Confirm your password"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      required
+                      className="border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-xl transition-all duration-300 bg-white/80 backdrop-blur-sm"
+                    />
+                  </div>
                 </div>
               </fieldset>
 
               <Button 
                 type="submit" 
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden group" 
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden group" 
                 disabled={loading}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -260,3 +264,4 @@ export default function Signup() {
     </div>
   );
 }
+

@@ -135,16 +135,16 @@ export default function DocumentUpload({ onUploadComplete }) {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <Card className="shadow-2xl rounded-2xl border-0 p-4 md:p-6 bg-gradient-to-br from-white/95 to-blue-50/30 backdrop-blur-lg transform hover:scale-105 transition-all duration-300">
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Card className="shadow-2xl rounded-2xl border-0 p-4 md:p-6 lg:p-8 bg-gradient-to-br from-white/95 to-blue-50/30 backdrop-blur-lg transform hover:scale-105 transition-all duration-300">
         <CardHeader className="text-center">
-          <CardTitle className="flex items-center justify-center gap-3 text-xl md:text-2xl font-bold text-gray-800">
+          <CardTitle className="flex items-center justify-center gap-3 text-xl md:text-2xl lg:text-3xl font-bold text-gray-800">
             <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl">
-              <Upload className="h-5 w-5 md:h-6 md:w-6 text-white" />
+              <Upload className="h-5 w-5 md:h-6 md:w-6 lg:h-8 lg:w-8 text-white" />
             </div>
             Upload Document
           </CardTitle>
-          <CardDescription className="text-gray-600 text-sm md:text-base mt-2">
+          <CardDescription className="text-gray-600 text-sm md:text-base lg:text-lg mt-2">
             Upload your compliance documents securely
           </CardDescription>
         </CardHeader>
@@ -168,46 +168,48 @@ export default function DocumentUpload({ onUploadComplete }) {
           )}
 
           <form onSubmit={handleUpload} className="space-y-6">
-            <fieldset className="border border-gray-200 rounded-xl p-4 space-y-4">
-              <legend className="text-sm font-semibold text-gray-700 px-2">Document Information</legend>
+            <fieldset className="border border-gray-200 rounded-xl p-4 md:p-6 space-y-4">
+              <legend className="text-sm md:text-base font-semibold text-gray-700 px-2">Document Information</legend>
               
-              <div className="space-y-3 transform hover:scale-105 transition-transform duration-200">
-                <Label htmlFor="category" className="text-gray-700 font-semibold text-base flex items-center gap-2">
-                  <FileText className="h-4 w-4 text-blue-500" />
-                  Document Category
-                </Label>
-                <Select value={category} onValueChange={(val) => setCategory(val)}>
-                  <SelectTrigger className="border-2 border-gray-200 focus:border-blue-500 rounded-xl bg-white/80 backdrop-blur-sm hover:bg-white transition-all duration-300 py-3">
-                    <SelectValue placeholder="Select document category" />
-                  </SelectTrigger>
-                  <SelectContent className="rounded-xl border-0 shadow-2xl bg-white/95 backdrop-blur-lg">
-                    {documentCategories.map((cat) => (
-                      <SelectItem key={cat.value} value={cat.value} className="rounded-lg hover:bg-blue-50 transition-colors duration-200 py-3">
-                        <div className="flex items-center space-x-3">
-                          <FileText className="h-4 w-4 text-blue-500" />
-                          <span className="font-medium">{cat.label}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+                <div className="space-y-3 transform hover:scale-105 transition-transform duration-200">
+                  <Label htmlFor="category" className="text-gray-700 font-semibold text-base flex items-center gap-2">
+                    <FileText className="h-4 w-4 text-blue-500" />
+                    Document Category
+                  </Label>
+                  <Select value={category} onValueChange={(val) => setCategory(val)}>
+                    <SelectTrigger className="border-2 border-gray-200 focus:border-blue-500 rounded-xl bg-white/80 backdrop-blur-sm hover:bg-white transition-all duration-300 py-3">
+                      <SelectValue placeholder="Select document category" />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-xl border-0 shadow-2xl bg-white/95 backdrop-blur-lg">
+                      {documentCategories.map((cat) => (
+                        <SelectItem key={cat.value} value={cat.value} className="rounded-lg hover:bg-blue-50 transition-colors duration-200 py-3">
+                          <div className="flex items-center space-x-3">
+                            <FileText className="h-4 w-4 text-blue-500" />
+                            <span className="font-medium">{cat.label}</span>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
-              <div className="space-y-3 transform hover:scale-105 transition-transform duration-200">
-                <Label htmlFor="description" className="text-gray-700 font-semibold text-base">Description</Label>
-                <Input
-                  id="description"
-                  type="text"
-                  placeholder="Brief description of the document"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className="border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-xl transition-all duration-300 bg-white/80 backdrop-blur-sm py-3"
-                />
+                <div className="space-y-3 transform hover:scale-105 transition-transform duration-200">
+                  <Label htmlFor="description" className="text-gray-700 font-semibold text-base">Description</Label>
+                  <Input
+                    id="description"
+                    type="text"
+                    placeholder="Brief description of the document"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-xl transition-all duration-300 bg-white/80 backdrop-blur-sm py-3"
+                  />
+                </div>
               </div>
             </fieldset>
 
-            <fieldset className="border border-gray-200 rounded-xl p-4 space-y-4">
-              <legend className="text-sm font-semibold text-gray-700 px-2">File Upload</legend>
+            <fieldset className="border border-gray-200 rounded-xl p-4 md:p-6 space-y-4">
+              <legend className="text-sm md:text-base font-semibold text-gray-700 px-2">File Upload</legend>
               
               <div className="space-y-3 transform hover:scale-105 transition-transform duration-200">
                 <Label htmlFor="file-upload" className="text-gray-700 font-semibold text-base">Select File</Label>

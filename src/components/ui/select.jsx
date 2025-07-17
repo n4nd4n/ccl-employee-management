@@ -29,18 +29,19 @@ export function Select({ value, onValueChange, children }) {
         onClick={() => setOpen(!open)}
         className="cursor-pointer px-3 py-2 border rounded bg-white flex justify-between items-center min-h-[40px]"
       >
-        <span className="flex items-center gap-2">{selectedText || "Select"}</span>
+        <span className="flex items-center gap-2 text-sm">{selectedText || "Select"}</span>
         <svg 
-          className={`w-4 h-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} 
+          className={`w-4 h-4 transition-transform duration-200 flex-shrink-0 ${open ? 'rotate-180' : ''}`} 
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </div>
       {open && (
-        <div className="absolute top-full left-0 w-full border bg-white mt-1 rounded shadow-lg z-10 max-h-60 overflow-y-auto">
+        <div className="absolute top-full left-0 w-full border bg-white mt-1 rounded shadow-lg z-50 max-h-60 overflow-y-auto">
           {React.Children.map(children, child => {
             if (child.type === SelectContent) {
               return React.Children.map(child.props.children, item =>
@@ -58,11 +59,11 @@ export function Select({ value, onValueChange, children }) {
 }
 
 export function SelectTrigger({ children, className = "" }) {
-  return <div className={className}>{children}</div>;
+  return <div className={`w-full ${className}`}>{children}</div>;
 }
 
 export function SelectValue({ placeholder }) {
-  return <span className="text-gray-600">{placeholder}</span>;
+  return <span className="text-gray-600 text-sm">{placeholder}</span>;
 }
 
 export function SelectContent({ children, className = "" }) {
@@ -73,7 +74,7 @@ export function SelectItem({ value, children, onClick, className = "" }) {
   return (
     <div
       onClick={onClick}
-      className={`px-3 py-2 hover:bg-blue-100 cursor-pointer flex items-center gap-2 ${className}`}
+      className={`px-3 py-2 hover:bg-blue-100 cursor-pointer flex items-center gap-2 text-sm ${className}`}
     >
       {children}
     </div>
