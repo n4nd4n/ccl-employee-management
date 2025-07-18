@@ -301,7 +301,7 @@ fieldset {
 
 fieldset:hover {
   border-color: #d1d5db;
-  background: rgba(249, 250, 251, 0.8);
+  /*background: rgba(249, 250, 251, 0.8);*/
 }
 
 fieldset legend {
