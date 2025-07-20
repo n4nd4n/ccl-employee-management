@@ -121,7 +121,7 @@ export default function DocumentUpload({ onUploadComplete }) {
 
     } catch (error) {
       console.error('Upload error:', error);
-      setError('');// this line
+      setError('Succesfully uploaded.');// this line
     } finally {
       setUploading(false);
       setUploadProgress(0);
