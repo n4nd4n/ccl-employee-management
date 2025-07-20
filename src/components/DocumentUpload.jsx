@@ -52,80 +52,81 @@ export default function DocumentUpload({ onUploadComplete }) {
   };
 
   const handleUpload = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!file || !category) {
-    setError('Please select a file and category');
-    return;
-  }
-
-  try {
-    setUploading(true);
-    setError('');
-    setUploadProgress(0);
-
-    const timestamp = new Date().getTime();
-    const fileName = `${currentUser.uid}/${category}_${timestamp}_${file.name}`;
-
-    // Upload file to Supabase Storage
-    const { data: uploadData, error: uploadError } = await supabase.storage
-      .from('uploads')
-      .upload(fileName, file);
-
-    if (uploadError || !uploadData) {
-      throw new Error(uploadError?.message || 'Unknown upload error');
+    if (!file || !category) {
+      setError('Please select a file and category');
+      return;
     }
 
-    // Get public URL
-    const { data: urlData, error: urlError } = supabase.storage
-      .from('uploads')
-      .getPublicUrl(fileName);
+    try {
+      setUploading(true);
+      setError('');
+      setUploadProgress(0);
 
-    if (urlError || !urlData?.publicUrl) {
-      throw new Error(urlError?.message || 'Failed to get public URL');
+      const timestamp = new Date().getTime();
+      const fileName = `${currentUser.uid}/${category}_${timestamp}_${file.name}`;
+
+      // Upload file to Supabase Storage
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('uploads')
+        .upload(fileName, file, {
+          onUploadProgress: (progress) => {
+            const percent = Math.round((progress.loaded / progress.total) * 100);
+            setUploadProgress(percent);
+          }
+        });
+
+      if (uploadError) {
+        throw uploadError;
+      }
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('uploads')
+        .getPublicUrl(fileName);
+
+      // Save document metadata to Supabase database
+      const { error: dbError } = await supabase
+        .from('documents')
+        .insert({
+          user_id: currentUser.uid,
+          file_name: file.name,
+          file_url: publicUrl,
+          category: category,
+          description: description,
+          status: 'pending',
+          uploaded_at: new Date().toISOString(),
+          file_size: file.size,
+          file_type: file.type
+        });
+
+      if (dbError) {
+        throw dbError;
+      }
+
+      setSuccess(true);
+      setFile(null);
+      setCategory('');
+      setDescription('');
+
+      const fileInput = document.getElementById('file-upload');
+      if (fileInput) fileInput.value = '';
+
+      if (onUploadComplete) {
+        onUploadComplete();
+      }
+
+      setTimeout(() => setSuccess(false), 3000);
+
+    } catch (error) {
+      console.error('Upload error:', error);
+      setError('');// this line
+    } finally {
+      setUploading(false);
+      setUploadProgress(0);
     }
-
-    // Save document metadata to Supabase database
-    const { error: dbError } = await supabase
-      .from('documents')
-      .insert({
-        user_id: currentUser.uid,
-        file_name: file.name,
-        file_url: urlData.publicUrl,
-        category: category,
-        description: description,
-        status: 'pending',
-        uploaded_at: new Date().toISOString(),
-        file_size: file.size,
-        file_type: file.type
-      });
-
-    if (dbError) {
-      throw dbError;
-    }
-
-    setSuccess(true);
-    setFile(null);
-    setCategory('');
-    setDescription('');
-
-    const fileInput = document.getElementById('file-upload');
-    if (fileInput) fileInput.value = '';
-
-    if (onUploadComplete) {
-      onUploadComplete();
-    }
-
-    setTimeout(() => setSuccess(false), 3000);
-  } catch (error) {
-    console.error('Upload error:', error);
-    setError('Failed to upload document. Please try again.');
-  } finally {
-    setUploading(false);
-    setUploadProgress(0);
-  }
-};
-
+  };
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
